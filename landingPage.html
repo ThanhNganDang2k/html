@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creatio Landing Page</title>
+    
+    <!-- Load required scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://webtracking-v01.creatio.com/JS/track-cookies.js"></script>
+    <script src="https://webtracking-v01.bpmonline.com/JS/create-object.js"></script>
+
+    <script>
+        var config = {
+            fields: {
+                "FullName": "#fullname",        // Tên khách hàng
+                "PhoneNumber": "#phone",        // Số điện thoại
+                "Email": "#email"               // Email
+            },
+            contactFields: {
+                "FullName": "#fullname",
+                "Phone": "#phone",
+                "Email": "#email"
+            },
+            customFields: {
+                "WebFormId": "4fd3f65d-fc54-453b-8792-bd1adc2828b2"
+            },
+            landingId: "4fd3f65d-fc54-453b-8792-bd1adc2828b2",
+            serviceUrl: "https://pre-galaxyconnect.creatio.com/0/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
+            redirectUrl: "" // Có thể thêm URL nếu muốn chuyển trang sau khi gửi form
+        };
+
+        function createObject() {
+            landing.createObjectFromLanding(config);
+            return false; // Ngăn form reload lại trang
+        }
+
+        function initLanding() {
+            landing.initLanding(config);
+        }
+
+        jQuery(document).ready(initLanding);
+    </script>
+</head>
+<body>
+    <h2>Đăng ký nhận thông tin</h2>
+    <form id="landingForm" onsubmit="return createObject();">
+        <label for="fullname">Họ và tên:</label><br>
+        <input type="text" id="fullname" name="fullname" required><br><br>
+
+        <label for="phone">Số điện thoại:</label><br>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <input type="submit" value="Gửi thông tin">
+    </form>
+</body>
+</html>
