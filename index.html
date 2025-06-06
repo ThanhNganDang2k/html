@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Creatio Landing Page</title>
-    
-    <!-- Load required scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://webtracking-v01.creatio.com/JS/track-cookies.js"></script>
-    <script src="https://webtracking-v01.bpmonline.com/JS/create-object.js"></script>
-
-    <script>
-        var config = {
-            fields: {
-                "FullName": "#fullname",        // Tên khách hàng
-                "PhoneNumber": "#phone",        // Số điện thoại
-                "Email": "#email"               // Email
-            },
-            contactFields: {
-                "FullName": "#fullname",
-                "Phone": "#phone",
-                "Email": "#email"
-            },
-            customFields: {
-                "WebFormId": "4fd3f65d-fc54-453b-8792-bd1adc2828b2"
-            },
-            landingId: "4fd3f65d-fc54-453b-8792-bd1adc2828b2",
-            serviceUrl: "https://pre-galaxyconnect.creatio.com/0/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
-            redirectUrl: "" // Có thể thêm URL nếu muốn chuyển trang sau khi gửi form
-        };
-
-        function createObject() {
-            landing.createObjectFromLanding(config);
-            return false; // Ngăn form reload lại trang
-        }
-
-        function initLanding() {
-            landing.initLanding(config);
-        }
-
-        jQuery(document).ready(initLanding);
-    </script>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://webtracking-v01.creatio.com/JS/track-cookies.js"></script>
+  <script src="https://webtracking-v01.bpmonline.com/JS/create-object.js"></script>
 </head>
 <body>
-    <h2>Đăng ký nhận thông tin</h2>
-    <form id="landingForm" onsubmit="return createObject();">
-        <label for="fullname">Họ và tên:</label><br>
-        <input type="text" id="fullname" name="fullname" required><br><br>
 
-        <label for="phone">Số điện thoại:</label><br>
-        <input type="tel" id="phone" name="phone" required><br><br>
+  <form id="contactForm" onsubmit="createObject(); return false;">
+    <label for="fullName">Full Name:</label><br>
+    <input type="text" id="fullName" name="fullName"><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+    <label for="phone">Phone Number:</label><br>
+    <input type="text" id="phone" name="phone"><br><br>
 
-        <input type="submit" value="Gửi thông tin">
-    </form>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    var config = {
+        fields: {
+            "FullName": "#fullName",       // Họ tên khách hàng
+            "PhoneNumber": "#phone",       // SĐT
+            "Email": "#email"              // Email
+        },
+        contactFields: {
+            "FullName": "#fullName",
+            "Phone": "#phone",
+            "Email": "#email"
+        },
+        customFields: {
+            "WebFormId": "4fd3f65d-fc54-453b-8792-bd1adc2828b2"
+        },
+        landingId: "4fd3f65d-fc54-453b-8792-bd1adc2828b2",
+        serviceUrl: "https://pre-galaxyconnect.creatio.com/0/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
+        redirectUrl: "" // Nếu muốn chuyển hướng sau khi submit thì nhập URL tại đây
+    };
+
+    function createObject() {
+        landing.createObjectFromLanding(config);
+    }
+
+    function initLanding() {
+        landing.initLanding(config);
+    }
+
+    jQuery(document).ready(initLanding);
+  </script>
+
 </body>
 </html>
